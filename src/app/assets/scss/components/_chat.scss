@@ -1,0 +1,113 @@
+.chat-window {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 200px;
+    background-color: var(--chat-color);
+    border-radius: $round-md $round-md 0 0;
+    height: 100%;
+  
+    padding: $spacing-md;
+
+    .user-dp {
+        font-size: 20px;
+
+        @include mobile-view {
+            font-size: 30px
+        }
+    }
+
+    .message {
+    display: flex;
+    flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        gap: $spacing-sm;
+        margin-bottom: $spacing-sm;
+
+        .messagebox {
+            padding: 5px ;
+            border-radius: $round-md;
+            width: 80%;
+            max-width: 100%;
+       
+
+            strong {
+                font-size: 14px !important;
+            }
+
+            span {
+                color: var(--text-color);
+                font-size: 12px !important;
+            }
+
+         
+        }
+        small {
+            color: var(--subtext-color) !important;
+            font-size: 10px;
+        }
+
+    }
+    .message.your-message {
+      
+
+        .messagebox {
+            background-color: var(--card-color);
+            text-align: right;
+            align-self: flex-end;
+
+            strong {
+                color: var(--info-color);
+            }
+
+            span {}
+        }
+        small {
+            text-align: right;
+        }
+    }
+
+    .message.bot-message {
+        justify-self: flex-start;
+
+        .messagebox {
+            background-color: var(--your-color);
+
+            strong {
+                color: var(--info-color);
+            }
+
+            span {}
+        }
+    }
+
+
+}
+
+.chat-footer {
+    background-color: var(--prim-color);
+    border-radius:  0 0 $round-md $round-md !important;margin-top: 1px;
+    box-shadow: 
+    0 0 5px rgba(21, 50, 85, 0.5); /* both inner and outer shadows */
+    .btn {
+        background: none;
+        border: none;
+    }
+ 
+ 
+}
+/* Custom styles for the mat-progress-bar */
+.custom-progress-bar {
+  height: 15px; /* Adjust the height of the progress bar */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #f0f0f0; /* Light background for the progress bar track */
+}
+
+.custom-progress-bar .mat-progress-bar-fill {
+  background-color: #4caf50; /* Green color for the progress bar fill */
+  border-radius: 10px; /* Rounded corners for the progress fill */
+}
+
+.custom-progress-bar .mat-progress-bar-buffer {
+  background-color: #ccc; /* Light gray for buffer (optional) */
+}

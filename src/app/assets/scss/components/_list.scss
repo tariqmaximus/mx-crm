@@ -1,0 +1,33 @@
+.user-list {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+
+    >li {
+       
+        border:  var( --bs-border-width) var( --bs-border-color);
+        border-radius: $round-md;
+        padding: $spacing-sm ;
+        margin-bottom: 0;
+        transition: 0.4s;
+        min-height: inherit;
+        background-color: var(--card-color);
+
+        &:last-child {
+            margin: 0;
+        }
+        &:hover {
+            background-color: white;
+            box-shadow: $box-shadow-lg;
+        }
+    }
+
+   
+}
+
+
+ 
+
+   
+
+

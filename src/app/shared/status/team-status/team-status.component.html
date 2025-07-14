@@ -1,0 +1,19 @@
+<app-card class="primary" title="Lead Distribution" [headerButtons]="headerButtons">
+  <div [ngSwitch]="activeTab">
+  
+    <!-- Table View -->
+    <div *ngSwitchCase="'table'" class="pt-3">
+      <metrics-grid ></metrics-grid>
+    </div>
+
+    <!-- Chart View -->
+    <div *ngSwitchCase="'chart'" class="pt-3">
+      <app-chart
+        [tabs]="chartTabs"
+        [tabShow]="false"
+        [chartType]="'bar'">
+      </app-chart>
+    </div>
+
+  </div>
+</app-card>

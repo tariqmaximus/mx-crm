@@ -1,0 +1,41 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #boardForm="ngForm" novalidate>
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <label class="form-label">Board Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="boardData.name"
+          name="name"
+          required
+          placeholder="Enter board name"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <label class="form-label">Category</label>
+        <select
+          class="form-select"
+          [(ngModel)]="boardData.category"
+          name="category"
+          required
+        >
+          <option value="" disabled selected>Select Category</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Development">Development</option>
+          <option value="Support">Support</option>
+          <option value="Sales">Sales</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group align-right">
+      <button type="button" class="btn" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn success">Add Board</button>
+    </div>
+  </form>
+</div>

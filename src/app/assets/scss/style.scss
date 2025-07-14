@@ -1,0 +1,172 @@
+@import 'reset';
+  
+@import 'variables';
+ @import 'responsive';
+
+@import 'global';
+@import 'icons';
+@import 'sidebar';
+@import 'header';
+//components
+
+@import 'components/print-container';
+@import 'components/list';
+@import 'variants/variant';
+
+@import 'components/calendar.scss';
+@import 'components/dropdown.scss';
+@import 'components/chat';
+
+
+// shares
+@import 'shared/profile';
+@import 'shared/chart';
+@import 'shared/modal';
+
+
+@import '_main-stuctue';
+
+img {
+    image-rendering: crisp-edges; /* Standard */
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -webkit-optimize-contrast; /* Safari (old) */
+    image-rendering: pixelated; /* Most modern browsers */
+}
+strong {
+    font-weight: 500;
+    
+}
+.full-screen {
+    display: block;
+    @include mobile-view {
+        display: none;
+    }
+}
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-gradient);
+   
+
+}
+.main-heading {
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+   
+    color: var(--text-color);
+ 
+}
+html {
+    width: 100%;
+}
+* {
+    transition: 0.4s;
+    box-sizing: border-box;
+}
+.content-panel {
+    display: flex;
+    height: 100vh;
+    box-sizing: border-box;
+ 
+    padding-top: $header-height;
+    @include mobile-view {
+        display: inherit;
+       padding-top: $header-height-mobile;
+    }
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    background-image: var(--logo);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.4s !important;
+}
+.logo.logo-lg {
+    width: 100%;
+    height: 100px;
+    background-size: 180px;
+}
+.logo.logo-md {
+    width: 100%;
+    height: 100px;
+    background-size: 130px;
+}
+
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+    
+   
+}
+.login-page {
+    .logo {
+        background-image: url(../images/logo-lg.png);
+        background-size: 200px;
+        display: block !important;
+        margin-bottom: $spacing-md;
+    }
+    background-image: url(../images/main-bg.jpg);
+    height: 100vh;
+
+ 
+}
+.login-left {
+    padding: 0;
+    background: white;
+background-size: cover;
+margin: 0;
+grid-template-columns: 100%;
+
+display: grid;
+align-items: center;
+justify-content: center;
+h1, p span {
+    color: var(--text-color);
+    @include tablet-view {
+        text-align: center;
+    }
+}
+h1 {
+    margin-bottom: $spacing-md;
+ 
+   
+}
+
+p span {
+    font-size: $font-size-large;
+}
+@include laptop-view {
+    h1 {
+        font-size: 18px;
+    }
+   .label span {
+        font-size: $font-size-small !important;
+    }
+    
+} 
+@include tablet-view {
+    display: none !important;
+}
+
+}
+.login-right {
+    padding: 0;
+    
+    display: grid;
+    align-items: center;
+    grid-template-columns: 100%;
+    justify-content: center;
+   
+    
+    }
+
+
+.no-bg {
+      background: none !important;
+  background-color: none !important;
+
+}

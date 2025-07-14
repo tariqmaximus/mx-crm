@@ -1,0 +1,9 @@
+<div class="buttons time-slot">
+  <button *ngFor="let time of timeSlots"
+          class="btn"
+          [class.selected]="time === selectedTime"
+          [class.available]="time === '11:30 AM' || time === '04:30 PM' || time === '08:30 PM' || time === '02:30 PM'"
+          (click)="onTimeChange(time)">
+    {{ time }}
+  </button>
+</div>

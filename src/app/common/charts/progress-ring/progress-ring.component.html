@@ -1,0 +1,25 @@
+<div class="progress-ring-wrapper">
+  <svg width="30" height="30" viewBox="0 0 36 36">
+    <path
+      class="circle-bg"
+      d="M18 2.0845
+         a 15.9155 15.9155 0 0 1 0 31.831
+         a 15.9155 15.9155 0 0 1 0 -31.831"
+      fill="none"
+      stroke="#e6e6e6"
+      stroke-width="4"
+    />
+    <path
+      class="circle"
+      [attr.stroke-dasharray]="percentage + ', 100'"
+      d="M18 2.0845
+         a 15.9155 15.9155 0 0 1 0 31.831
+         a 15.9155 15.9155 0 0 1 0 -31.831"
+      fill="none"
+      [attr.stroke]="strokeColor"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <text x="18" y="22" class="percentage-text" text-anchor="middle" fill="#333" font-size="8">{{ percentage }}%</text>
+  </svg>
+</div>

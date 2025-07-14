@@ -1,0 +1,96 @@
+
+
+
+body {
+    font-family: 'Poppins';   
+}
+
+p {
+    font-size: 12px;
+    color:var(--text-color);
+    span {
+        color: var(--muted-text-color);
+    }
+}
+.user-dropdown {
+    color: var(--text-color);
+}
+
+
+/* For Webkit Browsers (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height for horizontal scroll */
+   position: absolute;
+   left: 0;
+
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--bg-color); /* Track color */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--prim-color); /* Scrollbar handle color */
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--prim-color);
+  }
+  
+* {
+    box-sizing: border-box;
+}
+
+.profile-tile {
+  display: flex;
+  align-items: center;
+ justify-content: flex-start;
+ text-decoration: none;
+ gap: $spacing-sm;
+ .profile-details {
+   margin-top: 0;
+ }
+
+h5 {
+ font-size: 0.8rem;
+ text-align: left;
+ width:100px;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ p {
+   font-size: 0.7;
+   color: var(--muted-text-color);
+ }
+}
+
+}
+.profile-tile.fill {
+  background: var(--card-color);
+  padding: $spacing-sm;
+  border-radius: $round-md;
+}
+.profile-tile.profile-tile-v {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-sign {
+  position: absolute;
+  right: 50%;
+  margin-right: $dp-size-lg;
+  z-index: 9;
+.icon-warning {
+  color: var(--error-color);
+  text-shadow: 0 0 10px var(--error-color);
+  font-size: $font-size-large;
+}
+}
+.text-muted {
+  font-size: 12px !important;
+  color: var(--muted-text-color) !important;
+ 
+}

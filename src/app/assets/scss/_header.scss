@@ -1,0 +1,122 @@
+.header {
+  display: flex;
+width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: $spacing-sm 20px !important;
+  width: 100%;
+ height: $header-height;
+position: fixed;
+z-index: 999;
+ min-height: inherit !important;
+ border-radius: 0 !important;
+ border-left: 0 !important;
+
+  font-size: 14px;
+  @include tablet-view {
+  height: $header-height-mobile;
+  position: fixed !important;
+  width: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 0 !important;
+  border: none !important;
+  z-index: 99;
+  .profile-tile  {
+    h5 {
+      display: none;
+    }
+  }
+  }
+
+
+  button {
+    background: none;
+    color: var(--icon-color);
+    border: none;
+    outline: none;
+    font-family: var(--font-size-base);
+
+    i {
+      font-size: 20px;
+    }
+  }
+  .web-btn {
+    border-right: var(--bs-border-width) var(--bs-border-color);
+    margin-right: $spacing-md;
+    padding-right: $spacing-md;
+   i {
+    color: var(--second-color);
+   }
+    &:hover {
+      i {
+       
+      color: var(second-color) !important;
+      }
+    }
+    @include tablet-view {
+      display: none;
+    }
+    
+  }
+  
+
+}
+.sub-header {
+  padding: $spacing-sm 0;
+  border-top: var(--bs-border-width) var(--bs-border-color);
+  @include tablet-view {
+    display: none !important;
+  }
+
+
+  .profile-details ul {
+    display: flex;
+ 
+    margin: 0;
+  margin-left: $spacing-sm;
+    li {
+      border: none;
+      margin: 0;
+      display: block;
+      text-align: left;
+      padding: 0 $spacing-md;
+      border-right: var(--bs-border-width) var(--bs-border-color);
+      @include laptop-view {
+        padding: 0 $spacing-sm;
+      }
+
+      &:last-child {
+        border: none;
+      }
+    }
+    @include laptop-view {
+      display: none !important;
+    }
+  }
+
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.notification-btn {
+  background: none;
+  border: none;
+  color: var();
+  font-size: 18px;
+
+  cursor: pointer;
+  position: relative;
+
+
+}
+.user-dropdown {
+  cursor: pointer;
+}
+
+
+

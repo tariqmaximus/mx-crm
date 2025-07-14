@@ -1,0 +1,45 @@
+<!-- Tabbed view (if tabShow = true) -->
+<div class="tab-content p-0" *ngIf="tabShow && tabs?.length">
+  <div class="row p-2">
+    <div class="col-md-3 vital-list">
+      <ul class="nav nav-pills chart-tabs" id="vitalTabs" role="tablist">
+        <li class="nav-item" role="presentation" *ngFor="let tab of tabs; let i = index">
+          <a class="nav-link {{ tabColors[tab.name] }}"
+             [ngClass]="{ active: activeTab === tab }"
+             [style.borderColor]="tab.color"
+             id="tab-{{ i }}-tab"
+             data-bs-toggle="pill"
+             [attr.href]="'#tab-' + i"
+             role="tab"
+             (click)="selectTab(tab)">
+            <h5>{{ getLatestValue(tab) }}</h5>
+            {{ tab.name }}:
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9 smart-chart">
+      <div class="tab-content p-0" id="vitalTabContent">
+        <div *ngFor="let tab of tabs; let i = index"
+             class="tab-panel fade"
+             [ngClass]="{ show: activeTab === tab, active: activeTab === tab }"
+             id="tab-{{ i }}"
+             role="tabpanel">
+          <canvasjs-chart
+            *ngIf="activeTab === tab && chartOptions"
+            [options]="chartOptions"
+            class="chart-container">
+          </canvasjs-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Combined chart view (if tabShow = false) -->
+<div *ngIf="!tabShow && tabs?.length && chartOptions">
+  <canvasjs-chart
+    [options]="getCombinedChartOptions()"
+    class="chart-container">
+  </canvasjs-chart>
+</div>

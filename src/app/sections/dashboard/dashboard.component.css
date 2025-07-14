@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .sidebar {
+    width: 20%;
+    background-color: #f4f4f4;
+    padding: 10px;
+  }
+  
+  .tabs {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tabs li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom:  var( --bs-border-width) #ddd;
+  }
+  
+  .tabs li.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .content {
+    width: 80%;
+    padding: 10px;
+  }
+  
+  .tab-content {
+    margin-bottom: 20px;
+  }
+  
+  .chart-container {
+    height: 400px;
+  }
+  

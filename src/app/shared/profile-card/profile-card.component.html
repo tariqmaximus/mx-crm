@@ -1,0 +1,35 @@
+<app-card class=" " [showHeader]="false">
+ <div class="profile-tile profile-tile-v mt-3">
+  <div class="alert-sign">
+    <i class="icon-warning"></i>
+  </div>
+    <div *ngIf="ImagePath" class="user-dp lg ">
+     
+      <img src="assets/dp1.jpg" class="img-fluid" alt="Profile Picture"
+        onerror="this.onerror=null; this.nextElementSibling.style.display='block';">
+    </div>
+    <div *ngIf="!ImagePath" class="avatar avatar-lg">
+      <user-icon type="user-boy"></user-icon>
+    </div>
+    <h5 class="text-center">{{ name }} <p>Parent User</p></h5>
+  </div>
+  <div class="profile-details">
+    <ul>
+      <h5 class="heading mb-2">Basic Information</h5>
+      <li><strong>PID:</strong> {{ pid }}</li>
+      <li><strong>Phone:</strong> {{ phone }}</li>
+      <li><strong>Age:</strong> {{ age }}</li>
+      <li><strong>Gender:</strong> {{ gender }}</li>
+      <li><strong>DOB:</strong> {{ dob }}</li>
+      <li><strong>Address:</strong> {{ address }}</li>
+    </ul>
+    <ul>
+      <h5 class="heading mb-2">Insurance Information</h5>
+      <li><strong class="tag info">Primary: </strong>Dolor Sit Amet Health</li>
+      <li><strong >Secondary:</strong>Dolor Sit Amet Health</li>
+    </ul>
+   
+   
+  </div>
+  <ng-content></ng-content>
+</app-card>

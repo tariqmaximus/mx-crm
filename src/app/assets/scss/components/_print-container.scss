@@ -1,0 +1,21 @@
+.print-container {
+    background-color: white;
+    
+
+}
+.section-header {
+    background-color: var(--bmi-color);
+    padding: $spacing-sm;
+    color: white;
+}
+.mini-header {
+    background-color: var(--low-color);
+    padding: $spacing-sm;
+    color: var(--text-color);
+}
+
+@media print {
+    .buttons {
+        display: none !important;
+    }
+  }  

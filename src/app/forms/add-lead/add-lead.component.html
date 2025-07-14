@@ -1,0 +1,97 @@
+<div class="container mt-4">
+
+  <form>
+        <div class="row">
+          <!-- Left Column -->
+          <div class="col-md-6">
+
+            <!-- Profile Picture -->
+            <div class="mb-3">
+              <label for="profilePicture" class="form-label">Profile Picture</label>
+              <input type="file" id="profilePicture" class="form-control" (change)="onFileSelected($event)">
+              <p *ngIf="fileName" class="mt-2">Selected File: {{ fileName }}</p>
+            </div>
+
+            <!-- Date -->
+            <div class="mb-3">
+              <label for="leadDate" class="form-label">Date</label>
+              <input type="date" id="leadDate" class="form-control">
+            </div>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="leadName" class="form-label">Name</label>
+              <input type="text" id="leadName" class="form-control" placeholder="Enter lead name">
+            </div>
+
+            <!-- Source -->
+            <div class="mb-3">
+              <label for="leadSource" class="form-label">Source</label>
+              <input type="text" id="leadSource" class="form-control" placeholder="Enter source">
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="leadEmail" class="form-label">Email</label>
+              <input type="email" id="leadEmail" class="form-control" placeholder="Enter email">
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label for="leadPhone" class="form-label">Phone</label>
+              <input type="tel" id="leadPhone" class="form-control" placeholder="Enter phone number">
+            </div>
+
+          </div>
+
+          <!-- Right Column -->
+          <div class="col-md-6">
+
+            <!-- Company -->
+            <div class="mb-3">
+              <label for="leadCompany" class="form-label">Company</label>
+              <input type="text" id="leadCompany" class="form-control" placeholder="Enter company name">
+            </div>
+
+            <!-- Status -->
+            <div class="mb-3">
+              <label for="leadStatus" class="form-label">Status</label>
+              <select id="leadStatus" class="form-select">
+                <option>New</option>
+                <option>Contacted</option>
+                <option>Qualified</option>
+                <option>Converted</option>
+                <option>Lost</option>
+              </select>
+            </div>
+
+            <!-- Assigned To -->
+            <div class="mb-3">
+              <label for="assignedTo" class="form-label">Assigned To</label>
+              <input type="text" id="assignedTo" class="form-control" placeholder="Team member name">
+            </div>
+
+            <!-- Interested Services -->
+            <div class="mb-3">
+              <label for="services" class="form-label">Interested Services</label>
+              <input type="text" id="services" class="form-control" placeholder="e.g., SEO, Billing, Consultation">
+            </div>
+
+            <!-- Follow Up Date -->
+            <div class="mb-3">
+              <label for="followUp" class="form-label">Follow Up Date</label>
+              <input type="date" id="followUp" class="form-control">
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group align-right">
+            <button type="submit" class="btn ">cancel</button>
+          <button type="submit" class="btn primary">Submit Lead</button>
+        </div>
+      </form>
+
+</div>
+

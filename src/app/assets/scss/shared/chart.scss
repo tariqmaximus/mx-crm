@@ -1,0 +1,103 @@
+
+.chart-tabs {
+  max-width: 200px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+
+  height: 100%;
+  @include mobile-view {
+    flex-direction: row;
+    max-width: inherit;
+    flex-wrap: nowrap;
+  }
+  .nav-item {
+    width: 100%;
+    height: auto;
+    @include mobile-view {
+      width: inherit ;
+      
+     }
+
+  }
+  .nav-link {
+    border: none;
+    text-align: left;
+    border-left: 3px solid;
+
+    height: 100%;
+  
+   background-color: var(--card-color);
+    color: var(--muted-text-color);
+    
+    border-radius: $round-md;
+    display: flex;
+    flex-direction: column;
+  align-items:start;
+    font-size: 10px;
+    text-align: left;
+    justify-content: center;
+    @include mobile-view {
+      border-left: none;
+      border-bottom: 2px solid;
+    }
+    h5 {
+      margin: 0;
+      font-size: $font-size-small;
+      font-weight: bold;
+      @include mobile-view {
+        display: none;
+      }
+    }
+    
+    
+  }
+  .nav-link.active {
+color: var(--text-color);
+    background: var(--bg-color);
+
+    
+  }
+
+}
+.chart-tabs {
+  padding: 0;
+  .chart-tabs {
+  @include mobile-view {
+    flex-wrap: wrap;
+  }
+  }
+}
+.smart-chart {
+  >div {
+    height: 100% !important;
+  >div {
+    height: 100% !important;
+  }
+    canvas {
+      height: 240px !important;
+      width: 100% !important;
+    }
+  }
+
+}
+
+.chart-container {
+  height: auto !important;  /* Remove any fixed height */
+  width: 100% !important;   /* Ensure full width */
+  float: left;
+}
+/* Alternatively, target by ID pattern if there's no common class */
+[id^="canvasjs-angular-chart-container"] {
+
+  height: $chart-height !important;  /* Remove any fixed height */
+  width: 100% !important;   /* Ensure full width */
+}
+.canvasjs-chart-canvas {
+  height: $chart-height;
+}
+.canvasjs-chart-credit {
+  display: none;
+}
+

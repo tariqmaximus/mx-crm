@@ -1,0 +1,15 @@
+
+
+
+  <div [ngSwitch]="activeTab">
+    <div *ngSwitchCase="'table'">
+      <metrics-grid></metrics-grid>
+    </div>
+    <div *ngSwitchCase="'chart'">
+      <app-chart
+        [tabs]="chartTabs"
+        [tabShow]="false"
+        [chartType]="'pie'">
+      </app-chart>
+    </div>
+  </div>

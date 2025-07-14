@@ -1,0 +1,69 @@
+<header class="header ">
+  <div class="d-flex justify-content-between w-100">
+    <div class="logo">
+
+    </div>
+    <div class="header-right">
+      <button class="full-screen" (click)="toggleFullScreen()"><i class="icon-maximize"></i></button>
+      <button (click)="toggleTheme()"><i class="icon-dark-mode"></i></button>
+
+      <!-- Notification Dropdown (Includes Badge) -->
+
+
+      <!-- User Profile Dropdown (Includes Name, Role & Image) -->
+      <div class="dropdown nav">
+        <button class="dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="badge info">3</span>
+          <i class="icon-notification"></i>
+
+        </button>
+        <ul aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+          <li><a href="#notifications" class="dropdown-item">
+              <div class="profile-tile">
+                <div class="user-db sm domain-icon"><i class="icon-notification"></i></div>
+                <h5>Inferno Bosco <p>Your password will expire
+                    in 3 days.</p>
+                </h5>
+              </div>
+            </a></li>
+          <li><a href="#notifications" class="dropdown-item">
+              <div class="profile-tile">
+                <div class="user-db sm domain-icon"><i class="icon-notification"></i></div>
+                <h5>Inferno Bosco <p>Your password will expire
+                    in 3 days.</p>
+                </h5>
+              </div>
+            </a></li>
+          <li><a href="#notifications" class="dropdown-item">
+              <div class="profile-tile">
+                <div class="user-db sm domain-icon"><i class="icon-admin"></i></div>
+                <h5>Inferno Bosco <p>Your password will expire
+                    in 3 days.</p>
+                </h5>
+              </div>
+            </a></li>
+          <li><a href="#notifications" class="dropdown-item">
+              <div class="profile-tile">
+                <div class="user-db sm  domain-icon"><i class="icon-notification"></i></div>
+                <h5>Inferno Bosco <p>Your password will expire
+                    in 3 days.</p>
+                </h5>
+              </div>
+            </a></li>
+        </ul>
+      </div>
+      <div class="dropdown nav">
+        <button class="dropdown-toggle profile-tile fill" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="user-dp sm"><img alt="Profile Picture" class="img-fluid" src="assets/dp1.jpg"></div>
+          <h5> John Doe <p>Admin</p>
+          </h5>
+        </button>
+        <ul aria-labelledby="dropdownMenuButton" class="dropdown-menu">
+          <li><a href="#profile" class="dropdown-item"> Profile </a></li>
+          <li><a href="/change-password" class="dropdown-item"> Reset Password </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</header>

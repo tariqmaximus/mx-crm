@@ -1,0 +1,399 @@
+<ng-template #emptyTemplate></ng-template>
+<div class="ng-metrics-grid" [class.collapsed]="isCollapsed" [ngClass]="variant">
+  <div class="metrics-header" *ngIf="metricsHeader">
+    <div class="metrics-container">
+      <div class="metrics-group gap">
+        <h6 class="table-title">
+          <ng-container *ngIf="icon">
+            <i class="title-icon" [class]="icon"></i>
+          </ng-container>
+          {{ title }}
+          <span class="text-muted">{{ sub }}</span>
+        </h6>
+
+        <ng-container *ngIf="filterStyle?.includes('tabs') && searchOptions?.length">
+          <ul class="nav metrics-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" [ngClass]="{ active: selectedOption === '' }" (click)="selectTabOption('')"
+                type="button" role="tab">
+                All
+              </button>
+            </li>
+            <li class="nav-item" role="presentation" *ngFor="let option of searchOptions">
+              <button *ngIf="option" class="nav-link" [ngClass]="{ active: selectedOption === option }"
+                (click)="selectTabOption(option)" type="button" role="tab">
+                <span class="metrics-badge" [ngClass]="getStatusStyles(option).tagClass">
+                  {{ getTabCount(option) }}
+                </span>
+                {{ option }}
+              </button>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+
+      <div class="metrics-group gap">
+         <ng-container *ngTemplateOutlet="headerObject || emptyTemplate"></ng-container>
+
+        <div class="metrics-group gap">
+          <div class="metrics-btn-group">
+            <ng-container *ngIf="searchOptions?.length">
+              <ng-container *ngIf="filterStyle?.includes('dropdown')">
+                <select class="metrics-select" [(ngModel)]="selectedOption" (change)="applyFilters()">
+                  <option value="">All</option>
+                  <option *ngFor="let option of searchOptions" [value]="option">{{ option }}</option>
+                </select>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="filterStyle?.includes('keyword')">
+              <input class="metrics-input" type="text" placeholder="Search..." [(ngModel)]="searchKeyword"
+                (ngModelChange)="onSearchKeywordChange($event)" />
+            </ng-container>
+
+            <ng-container *ngIf="filterStyle?.includes('date')">
+              <input class="metrics-input" type="date" [(ngModel)]="selectedDate" (change)="applyFilters()" />
+            </ng-container>
+          </div>
+
+          <div class="metrics-btn-group">
+            <ng-container *ngIf="addNewRowItem">
+              <button class="metrics-btn" type="button" (click)="addNewRow()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </button>
+            </ng-container>
+          </div>
+
+          <div class="metrics-btn-group">
+            <ng-container *ngFor="let button of headerButtons || []">
+              <button type="button" class="metrics-btn" [id]="button?.targetId" (click)="executeAction(button)">
+                <ng-container *ngIf="button?.icon">
+                  <i [class]="button.icon"></i>
+                </ng-container>
+                <ng-container *ngIf="button?.label">
+                  <span>{{ button.label }}</span>
+                </ng-container>
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="collapsible">
+              <button class="metrics-btn" type="button" (click)="toggleCard()">
+                <svg *ngIf="isCollapsed" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" />
+                </svg>
+                <svg *ngIf="!isCollapsed" fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z" />
+                </svg>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <div *ngIf="progressBy" class="progress">
+  <div class="progress-bar" [ngClass]="getProgressClass(selectedOption)" role="progressbar"
+    [style.width.%]="progressValue" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100">
+    <p class="metrics-tag">{{ progressValue }}%</p>
+  </div>
+</div>
+  </div>
+  <div class="metrics-body">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of columns || []; let colIndex = index" (click)="Sorting ? sortByColumn(column.key) : null"
+              class="text-nowrap text-start align-middle " style="cursor: pointer;" scope="col">
+              <div class="sorting-group">
+                <!-- Always show Select All checkbox -->
+                <ng-container *ngIf="colIndex === 0">
+                  <div class="checkbox-wrapper">
+                    <input class="inp-cbx" [id]="prefix + '-cbx-header'" type="checkbox"
+                      (click)="$event.stopPropagation()" (change)="toggleAllRows($event)" [checked]="isAllSelected()" />
+
+                    <label class="cbx" [for]="prefix + '-cbx-header'">
+                      <div class="checkbox">
+                        <svg width="12px" height="10px" viewBox="0 0 12 10">
+                          <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg>
+                      </div>
+                      <ng-container *ngIf="selectedRows.length > 1">
+                        <div class="metrics-dropdown">
+                          <button class="metrics-btn no-bg " (click)="toggleDropdown(-1, $event)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                              class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                              <path
+                                d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                            </svg>
+                          </button>
+                          <ul class="dropdown-menu" [class.show]="dropdownShownIndex === -1">
+                            <ng-container *ngFor="let btn of actionButtons">
+
+
+                              <!-- Dropdown-style button -->
+                              <ng-container *ngIf="btn.isDropdown">
+                                <li *ngFor="let option of btn.options">
+                                  <ng-container *ngIf="btn && option">
+                                    <button class="dropdown-item" (click)="handleBulkDropdownAction(btn, option)">
+                                      {{ option }}
+                                    </button>
+                                  </ng-container>
+                                </li>
+                              </ng-container>
+                            </ng-container>
+                          </ul>
+
+                        </div>
+                      </ng-container>
+                    </label>
+                  </div>
+                </ng-container>
+                <!-- Column Label -->
+                <span>{{ column.label }}</span>
+
+                <!-- Sort Icon -->
+                <ng-container *ngIf="Sorting">
+                  <svg *ngIf="sortKey === column.key && sortAsc" xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+                  </svg>
+
+                  <svg *ngIf="sortKey === column.key && !sortAsc" xmlns="http://www.w3.org/2000/svg" width="16"
+                    height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
+                  </svg>
+
+                  <svg *ngIf="sortKey !== column.key" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5" />
+                  </svg>
+                </ng-container>
+
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Editable New Row -->
+         <tr *ngIf="newRow">
+  <td *ngFor="let column of (columns || []); let i = index">
+    <ng-container *ngIf="column?.key && column?.type !== undefined" [ngSwitch]="column.type">
+      <!-- 📷 Media Tile -->
+      <ng-container *ngSwitchCase="'media'">
+        <div class="metrics-group">
+          <div class="checkbox-wrapper">
+            <label class="cbx"><div class="checkbox"></div></label>
+          </div>
+          <div class="media-tile">
+            <div class="media-img default">
+              <span class="letter-fallback">
+                {{ (newRow?.name || '??')?.substring(0, 2)?.toUpperCase?.() }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!--Select Dropdown -->
+      <ng-container *ngSwitchCase="'select'">
+        <ng-container *ngIf="column?.options?.length">
+          <select class="metrics-select" [(ngModel)]="newRow[column.key]">
+            <option *ngFor="let opt of column.options || []" [value]="opt">{{ opt }}</option>
+          </select>
+        </ng-container>
+      </ng-container>
+
+      <!--Date -->
+      <ng-container *ngSwitchCase="'date'">
+        <input class="metrics-input" type="date" [(ngModel)]="newRow[column.key]" />
+      </ng-container>
+
+      <!--Save/Cancel Buttons -->
+      <ng-container *ngSwitchCase="'action'">
+        <div class="metrics-btn-group sm align-right">
+          <button class="metrics-btn success" (click)="saveNewRow()">Save</button>
+          <button class="metrics-btn danger" (click)="cancelNewRow()">Cancel</button>
+        </div>
+      </ng-container>
+
+      <!-- Default Text Input -->
+      <ng-container *ngSwitchDefault>
+        <input class="metrics-input" [(ngModel)]="newRow[column.key]" [placeholder]="column.label" />
+      </ng-container>
+    </ng-container>
+  </td>
+</tr>
+
+
+
+          <!-- Normal Data Rows -->
+          <ng-container *ngFor="let row of pagedData; let i = index; trackBy: trackByIndex">
+            <tr [ngClass]="{ 'dynamic-row': activeRowIndex === i }">
+             <td *ngFor="let column of (columns || []); let colIndex = index">
+  <ng-container *ngIf="column?.key != null" [ngSwitch]="column.key">
+
+    <!-- Media Tile -->
+    <ng-container *ngSwitchCase="'mediaTile'">
+      <div class="metrics-group">
+        <div class="checkbox-wrapper">
+       <input
+  *ngIf="prefix && row"
+  class="inp-cbx"
+  [id]="prefix + '-cbx-' + i"
+  type="checkbox"
+  (change)="toggleSelectRow(row, $event)"
+  [checked]="selectedRows.includes(row)"
+/>
+<label class="cbx" [for]="prefix + '-cbx-' + i">
+  <div class="checkbox">
+    <svg width="12px" height="10px" viewBox="0 0 12 10">
+      <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+    </svg>
+  </div>
+</label>
+        </div>
+
+        <div class="media-tile">
+         <div class="media-img" [ngClass]="getMediaStatusClass(row?.status)">
+            <ng-container *ngIf="row">
+            <img *ngIf="row?.mediaTile && !imageLoadFailedMap?.[getRowKey(row)]" [src]="getMediaImage(row)" (error)="handleImageError($event, row)" />
+<span *ngIf="!row?.mediaTile || imageLoadFailedMap?.[getRowKey(row)]">
+  {{ getNameLetters(row) }}
+</span>
+            </ng-container>
+          </div>
+
+          <div class="media-details">
+            <p class="name text-dark">{{ row?.name || 'Unknown' }}</p>
+            <p class="text-muted">{{ row?.source || 'No Information' }}</p>
+          </div>
+        </div>
+
+        <button class="metrics-btn mobile-btn" (click)="toggleRowClass(i)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            class="transition-icon"
+            [ngClass]="{ 'rotate-90': activeRowIndex === i }"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
+            />
+          </svg>
+        </button>
+      </div>
+    </ng-container>
+
+    <!-- Status -->
+   <ng-container *ngSwitchCase="'status'">
+  <span [ngClass]="getStatusStyles(row?.status).tagClass">
+    {{ getValue(row, column.key) }}
+  </span>
+</ng-container>
+
+    <!-- Action -->
+    <ng-container *ngSwitchCase="'action'">
+      <div class="metrics-btn-group sm align-right">
+        <ng-container *ngFor="let btn of actionButtons || []">
+          <button
+            *ngIf="!btn.isDropdown"
+            class="metrics-btn"
+            [ngClass]="btn.className"
+            [attr.title]="btn.tooltip"
+            (click)="handleButtonClick(btn, row)"
+          >
+            <i *ngIf="btn.icon" [class]="btn.icon"></i> {{ btn.label }}
+          </button>
+
+          <div *ngIf="btn.isDropdown" class="metrics-dropdown metrics-btn">
+            <button
+              class="metrics-btn no-bg metrics-btn-toggle"
+              (click)="toggleDropdown(i, $event)"
+              [ngClass]="btn.className"
+              [attr.title]="btn.tooltip"
+            >
+              {{ btn.label }}
+            </button>
+            <ul class="dropdown-menu" [class.show]="dropdownShownIndex === i">
+              <li *ngFor="let option of btn.options || []">
+                <button
+                  class="dropdown-item"
+                  *ngIf="btn && option && row"
+                  (click)="btn.dropdownAction ? handleDropdownClick(option, btn, row) : null"
+                >
+                  {{ option }}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <!-- Default -->
+    <ng-container *ngSwitchDefault>
+      <span
+        class="value"
+        [ngClass]="{ 'value-lenth': shouldApplyvalueLength(column.key) }"
+        [attr.title]="shouldApplyvalueLength(column.key) ? getValue(row, column.key) : null"
+      >
+        {{ getValue(row, column.key) }}
+      </span>
+    </ng-container>
+  </ng-container>
+</td>
+
+            </tr>
+          </ng-container>
+
+          <!-- No Records -->
+          <tr *ngIf="pagedData.length === 0 && !newRow">
+            <td [attr.colspan]="columns.length + 2" class="text-center py-3">No records found.</td>
+          </tr>
+        </tbody>
+
+        <tfoot *ngIf="shouldPaginate">
+          <tr>
+            <td>
+              
+ <ng-container *ngTemplateOutlet="footerObject || emptyTemplate"></ng-container>
+            </td>
+            <td [attr.colspan]="columns.length + 0">
+              <div class="pagination metrics-btn-group align-right ">
+                <button class="metrics-btn" (click)="prevPage()" [disabled]="currentPage === 1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+                  </svg>
+                </button>
+                <span class="metrics-btn">Page {{ currentPage }} of {{ totalPages }}</span>
+                <button class="metrics-btn" (click)="nextPage()" [disabled]="currentPage === totalPages">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+                  </svg>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

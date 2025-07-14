@@ -1,0 +1,48 @@
+<nav class="sidebar">
+  <ul class="nav " >
+    <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'home'" (click)="setActiveTab('home')" id="home-tab" data-bs-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+        <i class="icon-monitor"></i>
+        <span>Home</span>
+        </a>
+    </li>
+   <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'teams'" (click)="setActiveTab('teams')" id="teams-tab" data-bs-toggle="tab" href="#crm-teams" role="tab" aria-controls="teams" aria-selected="false">
+        <i class="icon-team"></i>
+        <span>teams</span>
+   
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'leads'" (click)="setActiveTab('leads')" id="leads-tab" data-bs-toggle="tab" href="#crm-leads" role="tab" aria-controls="leads" aria-selected="false">
+        <i class="icon-deal"></i>
+       <span>Leads</span>
+      </a>
+    </li>
+      <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'backlog'" (click)="setActiveTab('backlog')" id="backlog-tab" data-bs-toggle="tab" href="#backlog" role="tab" aria-controls="backlog" aria-selected="false">
+        <i class="icon-modal"></i>
+       <span> backlog</span>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'messages'" (click)="setActiveTab('messages')" id="messages-tab" data-bs-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">
+        <i class="icon-chat"></i>
+       <span> Messages</span>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'profile'" (click)="setActiveTab('profile')" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+        <i class="icon-admin"></i>
+        <span>Profile</span>
+      </a>
+    </li>
+    <li class="nav-item" >
+      <a class="nav-link" [class.active]="activeTab === 'log'" (click)="setActiveTab('log')" id="log-tab" data-bs-toggle="tab" href="#log" role="tab" aria-controls="log" aria-selected="false">
+       <i class="icon-log"></i>
+       <span>Log</span>
+      </a>
+    </li>
+ 
+  </ul>
+</nav>

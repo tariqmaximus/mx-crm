@@ -1,0 +1,142 @@
+<div class="container py-3">
+  <!-- Profile Header -->
+  <div class="d-flex align-items-center mb-4 gap-3">
+    <div class="user-dp lg round-md" [ngClass]="lead.roleClass">
+      <span>{{ lead.code }}</span>
+    </div>
+    <div>
+      <h4 class="mb-1">
+        <ng-container *ngIf="!isEditing; else editName">{{ lead.details }}</ng-container>
+        <ng-template #editName>
+          <input [(ngModel)]="lead.details" class="form-control danger form-control-md" placeholder="Full Name" />
+        </ng-template>
+      </h4>
+
+      <div>
+      
+        <ng-container *ngIf="!isEditing; else editDesig">
+          <span class="tag" [ngClass]="lead.tagClass">{{ lead.designation }}</span>
+        </ng-container>
+        <ng-template #editDesig>
+          <select [(ngModel)]="lead.designation" class="form-select form-control-md">
+            <option *ngFor="let des of designations" [value]="des">{{ des }}</option>
+          </select>
+        </ng-template>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Lead Detail Form -->
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class=" mb-2">
+        <label class="form-label"><strong>Joined Date:</strong></label>
+        <ng-container *ngIf="!isEditing; else editJoined">{{ lead.joinedDate }}</ng-container>
+        <ng-template #editJoined>
+          <input type="date" [(ngModel)]="lead.joinedDate" class="form-control form-control-md" />
+        </ng-template>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Email:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.email" class="form-control form-control-md" />
+        <span *ngIf="!isEditing">{{ lead.email }}</span>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Phone:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.phone" class="form-control form-control-md" />
+        <span *ngIf="!isEditing">{{ lead.phone }}</span>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Company:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.company" class="form-control form-control-md" />
+        <span *ngIf="!isEditing">{{ lead.company }}</span>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class=" mb-2">
+        <label class="form-label"><strong>Status:</strong></label>
+        <ng-container *ngIf="!isEditing; else editStatus">
+          <span class="tag" [ngClass]="lead.statusClass">{{ lead.status }}</span>
+        </ng-container>
+        <ng-template #editStatus>
+          <select [(ngModel)]="lead.status" class="form-select form-control-md ">
+            <option *ngFor="let s of statuses" [value]="s">{{ s }}</option>
+          </select>
+        </ng-template>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Assigned To:</strong></label>
+        <span *ngIf="!isEditing">{{ lead.assignedTo }}</span>
+        <select *ngIf="isEditing" [(ngModel)]="lead.assignedTo" class="form-select form-control-md danger">
+          <option *ngFor="let member of teamMembers" [value]="member">{{ member }}</option>
+        </select>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Interested Services:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.interestedServices" class="form-control form-control-md success" />
+        <span *ngIf="!isEditing">{{ lead.interestedServices }}</span>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Follow-Up Date:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.followUpDate"  type="date" class="form-control form-control-md " />
+        <span *ngIf="!isEditing">{{ lead.followUpDate }}</span>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class=" mb-2">
+        <label class="form-label"><strong>Location:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.location" class="form-control form-control-md" />
+        <span *ngIf="!isEditing">{{ lead.location }}</span>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Source:</strong></label>
+        <span *ngIf="!isEditing">{{ lead.source }}</span>
+        <select *ngIf="isEditing" [(ngModel)]="lead.source" class="form-select form-control-md info">
+          <option *ngFor="let src of sources" [value]="src">{{ src }}</option>
+        </select>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>Lead Score:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.score" type="number" class="form-control form-control-md" />
+        <span *ngIf="!isEditing">{{ lead.score }} / 100</span>
+      </div>
+
+      <div class=" mb-2">
+        <label class="form-label"><strong>LinkedIn:</strong></label>
+        <input *ngIf="isEditing" [(ngModel)]="lead.linkedin" class="form-control form-control-md" />
+        <a *ngIf="!isEditing" [href]="lead.linkedin" target="_blank">{{ lead.linkedin }}</a>
+      </div>
+
+      <div class=" mb-3">
+        <label class="form-label"><strong>Notes:</strong></label>
+        <textarea *ngIf="isEditing" [(ngModel)]="lead.notes" class="form-control form-control-md"></textarea>
+        <span *ngIf="!isEditing">{{ lead.notes }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+   <div class="d-flex align-items-center justify-content-end gap-2">
+  <div class=" align-right">
+    
+    <button class="btn danger " (click)="deleteLead()"><i class="icon-delete"></i> Delete Lead</button>
+  </div>
+    <div class="  " (click)="toggleEdit()">
+          <button type="button" class="btn primary" *ngIf="!isEditing"><i class="icon-edit"></i> Edit Lead</button>
+          <button type="button" class="btn info" *ngIf="isEditing"><i class="icon-edit"></i> Cancel</button>
+          <button *ngIf="isEditing" class="btn success " (click)="saveChanges()"><i class="icon-save"></i> Save</button>
+        </div>
+  </div>
+
+</div>

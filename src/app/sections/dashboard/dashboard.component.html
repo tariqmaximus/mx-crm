@@ -1,0 +1,50 @@
+<div class="container-fluid">
+  <div class="row g-3">
+    
+    <!-- Overview Heading -->
+    <div class="col-12 mt-0">
+      <h3 class="main-heading mb-2">Overview</h3>
+    </div>
+
+    <!-- Statistics Component -->
+    <div class="col-12">
+      <app-statistic></app-statistic>
+    </div>
+
+ <app-card  class="col-md-8 col-sm-12 align-items-center"  title="Today Leads" 
+    icon="icon-calendar" >
+  <div >
+ 
+        <div class="card-inner" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between;">
+          <div class="col-md-4 col-sm-12 mb-3 mb-md-0">
+            <task-status></task-status>
+          </div>
+          <div class="col-md-8 col-sm-12">
+       
+            <today-leads></today-leads>
+          </div>
+        </div>
+     
+    </div>
+ </app-card>
+
+    <!-- Today Leads and Task Section -->
+  
+
+    <!-- User List -->
+    <div class="col-md-4 col-sm-12 ">
+      <app-user-list></app-user-list>
+    </div>
+
+    <!-- All Leads Component -->
+    <div class="col-12 my-3">
+      <all-leads></all-leads>
+    </div>
+<div class="col-md-6 col-sm-12 mt-0">
+  <team-status></team-status>
+</div>
+<div class="col-md-6 col-sm-12 mt-0">
+  <revenue-status></revenue-status>
+</div>
+  </div>
+</div>

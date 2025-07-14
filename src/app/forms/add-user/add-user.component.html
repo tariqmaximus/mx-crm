@@ -1,0 +1,73 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm" novalidate>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" [(ngModel)]="userData.name" name="name" required placeholder="Enter full name">
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" [(ngModel)]="userData.email" name="email" required placeholder="Enter email">
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Designation</label>
+        <select class="form-select" [(ngModel)]="userData.designation" name="designation" required>
+          <option value="" disabled selected>Select Designation</option>
+          <option value="lead-generator">Lead Generator</option>
+          <option value="billing-specialist">Medical Billing Specialist</option>
+          <option value="credentialing-executive">Credentialing Executive</option>
+          <option value="team-lead">Team Lead</option>
+          <option value="qa-officer">Quality Assurance Officer</option>
+          <option value="appointment-setter">Appointment Setter</option>
+          <option value="data-entry-operator">Data Entry Operator</option>
+          <option value="sales-representative">Sales Representative</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Role</label>
+        <select class="form-select" [(ngModel)]="userData.role" name="role" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+          <option value="moderator">Moderator</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="manager">Manager</option>
+          <option value="trainer">Trainer</option>
+          <option value="lead-generation">Lead Generation</option>
+          <option value="support">Support Staff</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Password</label>
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+                 [(ngModel)]="userData.password" name="password" required placeholder="Enter password">
+          <button type="button" class="btn " (click)="showPassword = !showPassword">
+            <i [ngClass]="showPassword ? 'icon-hide' : 'icon-show'"></i>
+          </button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Re-enter Password</label>
+        <div class="input-group">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control"
+                 [(ngModel)]="userData.confirmPassword" name="confirmPassword" required placeholder="Re-enter password">
+          <button type="button" class="btn " (click)="showConfirmPassword = !showConfirmPassword">
+            <i [ngClass]="showConfirmPassword ? 'icon-hide' : 'icon-show'"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group align-right">
+      <button type="submit" class="btn ">cancel</button>
+      <button type="submit" class="btn success">Add User</button>
+    </div>
+  </form>
+</div>

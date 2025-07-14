@@ -1,0 +1,13 @@
+<div class="row g-3 mb-3">
+  <div class="col-md-6 col-lg-3 m-0" *ngFor="let stat of stats">
+    <div class="statistic-card {{ stat.color }}">
+      <div class="stat-content">
+        <div class="stat-title">{{ stat.label }}</div>
+        <div class="stat-value">{{ stat.value }}</div>
+      </div>
+      <div class="stat-icon">
+        <i class="icon-{{ stat.icon }}"></i>
+      </div>
+    </div>
+  </div>
+</div>

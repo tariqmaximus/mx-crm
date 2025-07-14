@@ -1,0 +1,39 @@
+
+.container-fluid {
+    padding: 0;
+}
+.tab-panel {
+    display: none ;
+    opacity: 0;
+}
+.tab-panel.active {
+    display: block;
+    opacity: 9;
+}
+
+.tab-content {
+    padding:  0;
+}
+.main-container {
+    padding: 0;
+box-sizing: border-box;
+padding:$spacing-md ;
+padding-top: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    @include tablet-view {
+        max-height: inherit;
+        margin-top: $header-height-mobile;
+    }
+  
+    
+}
+
+main {
+    position: relative;
+
+    padding:0 ;
+    padding-right: 0;
+    width: 100%;
+    
+}

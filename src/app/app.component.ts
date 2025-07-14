@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from "./pages/home/home.component";
+import { ModalComponent } from './common/modal/modal.component';
+
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  standalone: true,
+  imports: [RouterModule, HomeComponent, ModalComponent ],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'mx-crm';
+
 }

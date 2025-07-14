@@ -1,0 +1,70 @@
+.date-range-picker-container {
+
+
+    padding: 0;
+    table thead {
+      border: none;
+    }
+    .mat-calendar-body-label {
+      color: var( --second-color);
+    }
+
+  }
+  
+
+  
+  .calendar-container {
+    border-right:var(--bs-border-width) var(--bs-border-color);
+  &:last-child {
+    border: none;
+  }
+    .mat-calendar {
+      width: 100%;
+      min-height: 410px;
+    }
+    .mat-calendar-body-cell-content {
+color:var(--text-color) ;
+    }
+    .mat-calendar-body-selected {
+     color: white;
+    }
+    .mat-calendar-controls {
+      
+      color: var(--card-color);
+    }
+    .mat-mdc-button:not(:disabled) {
+     
+    }
+    .mdc-icon-button {
+     
+    }
+    svg {
+  
+    }
+  }
+  
+  h3 {
+    margin-bottom: 10px;
+  }
+  .time-slot {
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    justify-content: flex-start;
+    .btn {
+      border: none;
+      background-color: var(--bg-color);
+      border-radius: $round-sm;
+      color:var(--muted-text-color);
+    }
+    .btn.available {
+      background-color: var(--success-color);
+      color: white;
+     
+    }
+    .btn.selected {
+      background-color: var(--info-color);
+      color: white;
+    }
+  }
+
+ 

@@ -1,0 +1,126 @@
+<div class="card p-0 no-bg">
+  <!-- Card Header -->
+  <div class="card-header">
+    <div class="inner">
+      <div class="d-flex gap-2 align-items-center">
+        <i class="icon-minimize"></i>
+        <h5 class="title m-0">
+          
+          Lead board
+          <!-- Status Dropdown -->
+
+        </h5>
+      </div>
+      
+      <div class="d-flex gap-1">
+         <div class="form-group mb-0">
+            <button class="btn btn-icon" tooltip="add board" type="button" >
+            <i class="icon-search"></i>
+          </button>
+          <button class="btn btn-icon" tooltip="add board" type="button" (click)="onAddBoard()" >
+            <i class="icon-add"></i><span> Add Board</span>
+          </button>
+        
+        </div>
+        <div class="form-group mb-0">
+          <button class="btn btn-icon" type="button" (click)="toggleCard()">
+            <i [class]="isCollapsed ? 'icon-angle-right' : 'icon-angle-down'"></i>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="card-body pt-4">
+    <ng-container>
+      <div class="row">
+        <div class="col-md-3" *ngFor="let process of allBoards; let processIndex = index">
+          <div class="card lead-card mb-2" [class.collapsed]="isCollapsed">
+            <!-- Card Header -->
+            <div class="card-header">
+              <div class="inner">
+                <div class="d-flex gap-2 align-items-center">
+                  <!-- Progress Ring and Title -->
+                  <app-progress-ring [percentage]="process.percentage"></app-progress-ring>
+
+                  <h5 class="title m-0">
+                    {{ process.name }}
+                    <!-- Status Dropdown -->
+                    <div class="dropdown">
+                      <button class="btn btn-sm reset-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Filter
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li *ngFor="let option of statusOptions">
+                          <a href="#" class="dropdown-item"
+                            (click)="onStatusFilterChange(process, processIndex, option)">
+                            {{ option }}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </h5>
+                </div>
+
+                <!-- Collapse Button -->
+                <div class="d-flex gap-1">
+                  <div class="form-group mb-0">
+                   <button class="btn btn-icon" (click)="onAddLead()">
+  <i class="icon-add"></i>
+</button>
+
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body transition-collapse pt-3">
+              <!-- Drag/Drop Leads List -->
+              <div cdkDropList [cdkDropListData]="process.leads" [cdkDropListConnectedTo]="connectedLists"
+                [id]="'processList-' + processIndex" (cdkDropListDropped)="onLeadDrop($event, processIndex)">
+                <div *ngFor="let lead of process.leads; let i = index" cdkDrag>
+                  <div class="profile-card mb-2">
+                    <div class="d-flex justify-content-start align-items-center gap-3">
+                      <div class="user-dp md" [ngClass]="lead.roleClass">
+                        <span>{{ lead.code }}</span>
+                      </div>
+                      <p class="m-0">
+                        {{ lead.details }} <br />
+                        <span class="tag my-2" [ngClass]="lead.tagClass">{{ lead.type }}</span>
+                        <small class="d-block mt-1 text-muted">
+                          <i class="icon-calendar"></i> Joined: {{ lead.joinedDate }}
+                        </small>
+                      </p>
+                    </div>
+                    <!-- Lead Actions -->
+                    <div class="d-flex justify-content-end align-items-center">
+                      <span class="tag" [ngClass]="lead.statusClass">{{ lead.status }}</span>
+
+                      <!-- Dropdown -->
+                      <div class="dropdown">
+                        <button class="btn no-bg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="icon-more"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" class="dropdown-item">Edit Lead</a></li>
+                          <li><a href="#" class="dropdown-item">Remove Lead</a></li>
+                          <li><a href="#" class="dropdown-item">Assign To</a></li>
+                        </ul>
+                      </div>
+                      <!-- View Details Button -->
+                      <button type="button" class="btn no-bg" (click)="onViewDetails()">
+                        <i class="icon-show"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Card -->
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

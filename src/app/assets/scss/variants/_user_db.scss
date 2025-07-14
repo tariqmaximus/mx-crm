@@ -1,0 +1,51 @@
+.user-dp {
+  background-color: var(--primary);
+  width: $dp-size-md;
+  height: $dp-size-md;
+  border-radius: $dp-round;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+
+  i {
+    font-size: 40px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @each $name, $color in $variants {
+   &.#{$name} {
+  background-color: $color;
+  $fallborder: map-get($variant-colors, $name);
+  border: 5px solid if($fallborder != null, lighten($fallborder, 40%), lighten($color, 10%));
+}
+
+
+  }
+  &.lg {
+  width: $dp-size-lg;
+  height: $dp-size-lg;
+  span {
+    font-size: 28px;
+  }
+}
+
+&.md {
+  width: $dp-size-md;
+  height: $dp-size-md;
+}
+
+&.sm {
+  width: $dp-size-sm;
+  height: $dp-size-sm;
+}
+
+}

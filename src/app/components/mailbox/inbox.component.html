@@ -1,0 +1,31 @@
+<!-- Message List -->
+<div *ngIf="!selectedMessage" class="pb-0">
+  <ul class="list-lg p-0 messages-list">
+    <li
+      class="d-flex justify-content-between p-2"
+      *ngFor="let msg of messagesList"
+      (click)="selectMessage(msg)"
+      style="cursor: pointer"
+    >
+      <div class="d-flex justify-content-left align-items-center gap-2">
+        <user-icon class="user-dp" [type]="msg.iconType"></user-icon>
+        <p [ngClass]="{ unread: msg.status === 'unread', read: msg.status === 'read' }">
+          <span>{{ msg.name }}</span><br />
+          {{ msg.message }}<br />
+          <span>{{ msg.date }}</span>
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<!-- Chat View -->
+<div *ngIf="selectedMessage">
+  <!-- Manual Back Button -->
+  <button class="btn " (click)="backToList()"><i class="icon-angle-left"></i><span>Back to Messages</span> </button>
+
+  <!-- Chat Card -->
+
+    <app-chat [message]="selectedMessage"></app-chat>
+
+</div>

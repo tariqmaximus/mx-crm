@@ -1,0 +1,97 @@
+<ng-container *ngFor="let team of allTeams; let teamIndex = index">
+  <app-card
+    class="dynamic-card"
+    [title]="team.name"
+    icon="icon-team"
+    [headerButtons]="headerButtons"
+    [collapsible]="true"
+  >
+    <div
+      class="row"
+      cdkDropList
+      [cdkDropListData]="team.members"
+      [cdkDropListConnectedTo]="connectedLists"
+      [id]="'teamList-' + teamIndex"
+      (cdkDropListDropped)="onMemberDrop($event, teamIndex)"
+    >
+      <div
+        class="col-md-3"
+        *ngFor="let member of team.members; let i = index"
+        cdkDrag
+      >
+        <div class="profile-card mb-2">
+          <div class="d-flex justify-content-start align-items-center gap-3">
+            <div class="user-dp md" [ngClass]="member.roleClass">
+              <span>{{ member.code }}</span>
+            </div>
+            <div>
+              <p class="m-0">{{ member.details }}</p>
+              <!-- Designation Dropdown -->
+              <div class="dropdown">
+                <button
+                  class="btn btn-sm reset-dropdown dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                >
+                  {{ member.designation || 'Select Designation' }}
+                </button>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let option of designationOptions">
+                    <a
+                      href="#"
+                      class="dropdown-item"
+                      (click)="member.designation = option"
+                    >
+                      {{ option }}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between gap-3">
+            <!-- Role Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-sm reset-dropdown dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                {{ member.role || 'Select Role' }}
+              </button>
+              <ul class="dropdown-menu">
+                <li *ngFor="let option of roleOptions">
+                  <a
+                    href="#"
+                    class="dropdown-item"
+                    (click)="member.role = option"
+                  >
+                    {{ option }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Action Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn no-bg"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="icon-more"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li *ngFor="let action of controlOptions">
+                  <a href="#" class="dropdown-item">{{ action }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-card>
+  <br />
+</ng-container>

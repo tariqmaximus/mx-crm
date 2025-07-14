@@ -1,0 +1,48 @@
+<app-card class="flex-card" title="Users" icon="icon-warning" [headerButtons]="headerButtons">
+
+    <ul class="user-list p-0">
+      <li class="d-flex justify-content-between align-items-center" *ngFor="let med of AppUsers; let i = index">
+        
+        <!-- User Info -->
+        <div class="d-flex justify-content-start align-items-center gap-3">
+          <div class="user-dp " [ngClass]="med.roleClass">
+          <span>  {{ med.code }}</span>
+          </div>
+          <p class="m-0">
+            {{ med.details }}<br />
+            <span class="text-muted"> {{ med.digination }}</span>
+          </p>
+        </div>
+<div class="d-flex">
+        <!-- Role Dropdown -->
+        <div class="dropdown ">
+          <button class="btn no-bg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Change Role
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">Admin</a></li>
+            <li><a href="#" class="dropdown-item">Editor</a></li>
+            <li><a href="#" class="dropdown-item">Moderator</a></li>
+            <li><a href="#" class="dropdown-item">Author</a></li>
+            <li><a href="#" class="dropdown-item">Support</a></li>
+            <li><a href="#" class="dropdown-item">Analyst</a></li>
+          </ul>
+        </div>
+
+        <!-- Actions Dropdown -->
+        <div class="dropdown">
+          <button class="btn no-bg " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="icon-more"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-item">Edit User</a></li>
+            <li><a href="#" class="dropdown-item">Remove User</a></li>
+            <li><a href="#" class="dropdown-item">View Profile</a></li>
+          </ul>
+        </div>
+        </div>
+
+      </li>
+    </ul>
+ 
+</app-card>

@@ -1,0 +1,33 @@
+<div class="p-0 h-100">
+  <app-card
+    class="chat-card"
+    [headerButtons]="[
+      { label: 'Back to Messages', icon: 'icon-angle-left', targetId: 'btnBack', action: backToList }
+    ]"
+  >
+    <div class="p-0">
+      <div class="chat-window">
+        <div *ngFor="let msg of messages" class="message"
+             [ngClass]="{ 'your-message': msg.sender === 'You', 'bot-message': msg.sender !== 'You' }">
+          <div class="messagebox">
+            <span>{{ msg.text }}</span>
+          </div>
+          <small class="text-muted d-block">{{ msg.timestamp | date: 'shortTime' }}</small>
+        </div>
+      </div>
+
+      <div class="input-group chat-footer">
+        <input
+          [(ngModel)]="newMessage"
+          type="text"
+          class="form-control message-input"
+          placeholder="Type a message..."
+          (keydown.enter)="sendMessage()"
+        />
+        <button (click)="sendMessage()" class="btn primary">
+          <i class="icon-send"></i>
+        </button>
+      </div>
+    </div>
+  </app-card>
+</div>

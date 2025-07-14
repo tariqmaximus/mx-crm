@@ -1,0 +1,15 @@
+<div class="date-range-picker-container">
+
+
+ 
+      <mat-calendar 
+        [selected]="endDate"
+        (selectedChange)="onEndDateChange($event)">
+      </mat-calendar>
+ 
+
+  <p *ngIf="startDate && endDate" class="mt-3 text-center">
+    Selected:
+    <strong>{{ endDate | date:'mediumDate' }}</strong>
+  </p>
+</div>

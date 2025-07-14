@@ -1,0 +1,42 @@
+<div class="card" [ngClass]="variant" [class.collapsed]="isCollapsed">
+  <div class="card-header" *ngIf="showHeader">
+    <div class="inner">
+    <div class="d-flex gap-1">
+      <ng-content select="[header-component]"></ng-content>
+      <i *ngIf="icon" [class]="icon"></i>
+      <h5 class="title">
+        {{ title }}
+        <span class="text-muted">{{ sub }}</span>
+      </h5>
+    </div>
+    <div class="d-flex gap-1">
+      <div class="form-group mb-0 align-right">
+        <!-- Header Buttons -->
+        <button *ngFor="let button of headerButtons"
+                type="button"
+                class="btn btn-icon"
+                [id]="button.targetId"
+                (click)="executeAction(button)">
+          <i *ngIf="button.icon" [class]="button.icon"></i>
+          <span *ngIf="button.label">{{ button.label }}</span>
+        </button>
+      </div>
+      <div class="buttons" *ngIf="collapsible">
+        <button 
+                class="btn btn-icon"
+                type="button"
+                (click)="toggleCard()">
+          <i [class]="isCollapsed ? 'icon-angle-right' : 'icon-angle-down'"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="card-body transition-collapse pt-3" [class.no-header]="!showHeader">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="card-footer" *ngIf="showFooter && !isCollapsed">
+    <ng-content select=".footer"></ng-content>
+  </div>
+</div>
