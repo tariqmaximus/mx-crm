@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { MetricsGridComponent } from '../../../test-lib/metrics-grid/metrics-grid.component';
+import { MetricsGridComponent } from 'metrics-grid';
 import { CommonModule } from '@angular/common';
 import { ModalService } from '../../../common/modal/modal.service';
 import { DatePickerComponent } from '../../../common/date-picker/date-picker.component';
 @Component({
   selector: 'today-leads',
-  standalone: true,
   imports: [CommonModule, MetricsGridComponent, ],
   templateUrl: './today-leads.component.html',
   styleUrl: './today-leads.component.css'
