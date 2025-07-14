@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MetricsGridComponent } from '../../../test-lib/metrics-grid/metrics-grid.component';
+import { MetricsGridComponent } from '../../../services/metrics-grid/lib/metrics-grid.component';
 import { ChartComponent } from '../../../common/charts/chart/chart.component';
 
 @Component({

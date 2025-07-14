@@ -22,7 +22,7 @@
             <li class="nav-item" role="presentation" *ngFor="let option of searchOptions">
               <button *ngIf="option" class="nav-link" [ngClass]="{ active: selectedOption === option }"
                 (click)="selectTabOption(option)" type="button" role="tab">
-                <span class="metrics-badge" [ngClass]="getStatusStyles(option).tagClass">
+                <span class="metrics-badge" [ngClass]="getStatusStyles(option)?.tagClass">
                   {{ getTabCount(option) }}
                 </span>
                 {{ option }}
@@ -300,7 +300,7 @@
 
     <!-- Status -->
    <ng-container *ngSwitchCase="'status'">
-  <span [ngClass]="getStatusStyles(row?.status).tagClass">
+  <span [ngClass]="getStatusStyles(row?.status)?.tagClass">
     {{ getValue(row, column.key) }}
   </span>
 </ng-container>

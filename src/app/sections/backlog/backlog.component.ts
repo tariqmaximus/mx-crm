@@ -1,9 +1,13 @@
 // backlog.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ModalService } from '../../common/modal/modal.service';
 import { AddLeadComponent } from '../../forms/add-lead/add-lead.component';
-import { MetricsGridComponent } from '../../test-lib/metrics-grid/metrics-grid.component';
+import { MetricsGridComponent } from '../../services/metrics-grid/lib/metrics-grid.component';
+
+
+
 @Component({
   selector: 'app-backlog',
   standalone: true,

@@ -1,9 +1,11 @@
 <app-card title="Monthly Revenue" [headerButtons]="headerButtons">
   <div [ngSwitch]="activeTab">
+  
     <!-- Table View -->
     <div *ngSwitchCase="'table'" class="pt-3">
-      <metrics-grid></metrics-grid>
+      <metrics-grid [data]="tableData"></metrics-grid>
     </div>
+
     <!-- Chart View -->
     <div *ngSwitchCase="'chart'" class="pt-3">
       <app-chart
@@ -12,5 +14,6 @@
         [chartType]="'area'">
       </app-chart>
     </div>
+
   </div>
 </app-card>

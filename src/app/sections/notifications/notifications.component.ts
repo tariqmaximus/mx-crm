@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CardComponent } from "../../common/card/card.component";
-import { MetricsGridComponent } from '../../test-lib/metrics-grid/metrics-grid.component';
+import { MetricsGridComponent } from '../../services/metrics-grid/lib/metrics-grid.component';
 
 @Component({
   selector: 'app-notifications',

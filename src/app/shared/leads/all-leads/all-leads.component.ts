@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { MetricsGridComponent } from 'metrics-grid';
 
-
 @Component({
   selector: 'all-leads',
   standalone: true,

@@ -4,7 +4,7 @@ import { ChartComponent } from '../../../common/charts/chart/chart.component';
 import { CardComponent } from '../../../common/card/card.component';
 import { DatePickerComponent } from '../../../common/date-picker/date-picker.component';
 import { ModalService } from '../../../common/modal/modal.service';
-import { MetricsGridComponent } from '../../../test-lib/metrics-grid/metrics-grid.component';
+import { MetricsGridComponent } from '../../../services/metrics-grid/lib/metrics-grid.component';
 
 @Component({
   selector: 'team-status',

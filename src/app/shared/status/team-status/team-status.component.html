@@ -3,7 +3,7 @@
   
     <!-- Table View -->
     <div *ngSwitchCase="'table'" class="pt-3">
-      <metrics-grid ></metrics-grid>
+      <metrics-grid [data]="tableData"></metrics-grid>
     </div>
 
     <!-- Chart View -->

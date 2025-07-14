@@ -19,10 +19,6 @@ import { NotificationsComponent } from '../../sections/notifications/notificatio
 import { TeamsComponent } from "../../sections/teams/teams.component";
 import { LeadsComponent } from "../../sections/leads/leads.component";
 import { BacklogComponent } from "../../sections/backlog/backlog.component";
-
-
-
-
 @Component({
   selector: 'app-home',
   standalone: true,

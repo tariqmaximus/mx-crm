@@ -1,5 +1,16 @@
 
-    <metrics-grid>
+    <metrics-grid
+    [data]="todayLeads"
+[metricsHeader] ="false"
+  [variant]="'round-card'"
+  [pageSize]="3"
+  [valueLength]="['email', 'organization', 'phone', 'tags']"
+  mediaImage="assets/dummy.jpg"
+  [Sorting]="true"
+  [showActions]="true"
+
+      [actionButtons]="actionButtons"
+         >
     </metrics-grid>
    
 

@@ -3,7 +3,7 @@
 
   <div [ngSwitch]="activeTab">
     <div *ngSwitchCase="'table'">
-      <metrics-grid></metrics-grid>
+      <metrics-grid [data]="leads"></metrics-grid>
     </div>
     <div *ngSwitchCase="'chart'">
       <app-chart

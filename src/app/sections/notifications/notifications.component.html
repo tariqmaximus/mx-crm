@@ -1,4 +1,8 @@
 <app-card title="Notifications" icon="icon-calendar" [collapsible]="false"   >
-<metrics-grid>
+<metrics-grid 
+
+[data]="notifications" 
+[showActions]="true" 
+[actionButtons]="actionButtons">
 </metrics-grid>
 </app-card>

@@ -6,8 +6,9 @@ import {
   Output,
   EventEmitter,
   TemplateRef,
-  ViewChild
+  ViewChild 
 } from '@angular/core';
+import 'zone.js';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { statusMap as defaultStatusMap } from './status-map';
@@ -33,11 +34,10 @@ interface ActionButton {
 let uniqueCounter = 0;
 
 @Component({
-  selector: 'metrics-grid',
-  standalone: true, // ✅ New in Angular 14+, required in Angular 15+ for standalone components
+   selector: 'metrics-grid',
   templateUrl: './metrics-grid.component.html',
-  styleUrls: ['../assets/css/metrics-grid.css'],
-  imports: [CommonModule, FormsModule]
+  imports:[CommonModule, FormsModule],
+  styleUrls: ['../assets/css/metrics-grid.css']
 })
 export class MetricsGridComponent implements OnInit, OnChanges {
     @ViewChild('emptyTemplate', { static: true }) emptyTemplate!: TemplateRef<any>;
